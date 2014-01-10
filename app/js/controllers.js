@@ -1,25 +1,34 @@
-var phonecatApp = angular.module('phonecatApp', []);
+var contactManager = angular.module('contactManager')
 
-phonecatApp.controller('PhoneListCtrl', function ($scope, $http) {
-	$http.get('phones/phones.json').success(function(data) {
-		$scope.phones = data;
-	});
+contactManager.controller('InfoCtrl',
+		  function InfoCtrl($scope, $routeParams) {
+		    $scope.contact = $scope.contacts[$routeParams.id];
+		  });
 
-	$scope.orderProp = 'age';
-});
-
-var calculatorApp = angular.module('calculatorApp', []);
-calculatorApp.controller('CalController', function($scope){
-	$scope.add = function(){
-		$scope.result = $scope.first_number + $scope.last_number;
-	}
-	$scope.sub = function(){
-		$scope.result = $scope.first_number - $scope.last_number;
-	}
-	$scope.div = function(){
-		$scope.result = $scope.first_number / $scope.last_number;
-	}
-	$scope.mul = function(){
-		$scope.result = $scope.first_number * $scope.last_number;
-	}
-})
+contactManager.controller('AddCtrl',
+		  function AddCtrl($scope, $location) {
+		    $scope.contact = {};
+		    $scope.add = function () {
+		      $scope.contacts.push($scope.contact);
+		      $location.url('/');
+		    };
+		  });
+contactManager.controller('EditCtrl',
+		  function EditCtrl($scope, $routeParams, $location) {
+		    $scope.contact = $scope.contacts[$routeParams.id];
+		    $scope.edit = function () {
+		      $scope.contacts[$routeParams.id] = $scope.contact;
+		      $location.url('/');
+		    };
+		  });
+contactManager.controller('RemoveCtrl',
+		function RemoveCtrl($scope, $routeParams, $location) {
+	    	$scope.contact = $scope.contacts[$routeParams.id];
+	    	$scope.remove = function () {
+	    	$scope.contacts.splice($routeParams.id, 1);
+	    	$location.url('/');
+	    	};
+	    	$scope.back = function () {
+	    		$location.url('/');
+	    	};
+	  	});

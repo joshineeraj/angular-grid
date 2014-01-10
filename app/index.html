@@ -1,52 +1,19 @@
 <!doctype html>
-<!-- <html lang="en" ng-app="phonecatApp">-->
-<html lang="en" ng-app="calculatorApp">
+<html lang="en" ng-app="contactManager">
 <head>
-<meta charset="utf-8">
-<title>My HTML File</title>
-<link rel="stylesheet" href="css/app.css">
-<link rel="stylesheet" href="css/bootstrap.css">
-<script src="lib/angular/angular.js"></script>
-<script src="js/controllers.js"></script>
-
-<style>
-.container{
-	margin:120px; 
-	background-color:gray; 
-	width:50%;
-	font-weight:bold;
-	font-style:italic;
-	padding:12px;
-}
-
-.inner_container{margin:12px;}
-</style>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-route.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/app.js"></script>
+    <title>Contact Manager</title>
 </head>
-
-<body ng-controller="CalController">
-	<!-- Search:
-	<input ng-model="query"> Sort by:
-	<select ng-model="orderProp">
-		<option value="name">Alphabetical</option>
-		<option value="age">Newest</option>
-	</select>
-
-
-	<ul class="phones">
-		<li ng-repeat="phone in phones | filter:query | orderBy:orderProp"
-			class="thumbnail"><a href="#/phones/{{phone.id}}" class="thumb"><img
-				ng-src="{{phone.imageUrl}}"></a> <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
-			<p>{{phone.snippet}}</p></li>
-	</ul>-->
-	<div class="container">
-		Calculator:
-		<div class="inner_container"><input type="number" ng-model="first_number"></div>
-		<div class="inner_container"><input type="number" ng-model="last_number"></div>
-		<input type="button" value="addition" ng-click="add()">
-		<input type="button" value="subtract" ng-click="sub()">
-		<input type="button" value="division" ng-click="div()">
-		<input type="button" value="multiplication" ng-click="mul()">
-		<div class="inner_container">Result:- {{result}}</div>
-	</div>
-</body>
+    <body ng-controller="AppCtrl">
+    <h1>AngularJS Contact Manager</h1>
+        <div class="container">
+            <div ng-view></div>
+        </div>
+    </body>
 </html>
